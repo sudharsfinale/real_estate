@@ -1,6 +1,8 @@
+import GlobalProvider from "@/library/global-provider";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import "./globals.css";
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -12,10 +14,16 @@ export default function RootLayout() {
     "Rubik-SemiBold": require("../assets/fonts/Rubik-SemiBold.ttf"),
   });
   useEffect(() => {
-    if(fontsLoaded){
+    if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded])
-if(!fontsLoaded) return null;
-  return <Stack />;
+  }, [fontsLoaded]);
+  if (!fontsLoaded) return null;
+  return (
+    <GlobalProvider>
+    <SafeAreaView style={{flex:1}} className="h-full bg-white">
+      <Stack screenOptions={{ headerShown: false }} />
+    </SafeAreaView>
+    </GlobalProvider>
+  );
 }
