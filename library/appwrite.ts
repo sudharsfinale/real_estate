@@ -63,7 +63,7 @@ export async function getCurrentUser() {
             const userAvatar = avatar.getInitials(response.name);
             return {
                 ...response,
-                avatar: userAvatar
+                avatar: userAvatar.toString()
             }
         }
     } catch (error) {

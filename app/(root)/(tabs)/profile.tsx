@@ -48,22 +48,23 @@ const Profile = () => {
   const handleLogout = async() => {
     const result = await logout();
     if(result){
-      Alert.alert("Success", "You have been logged out successfully")
+      Alert.alert("Success", "You have been logged out successfully");
+      refetch();
+    } else {
+      Alert.alert("Error", "There is an issue in logout, Please try again later");
     }
   }
-  console.log(JSON.stringify(user, null, 2));
-  console.log(typeof(user))
   return (
-    <ScrollView contentContainerClassName="p-[16]">
+    <ScrollView contentContainerClassName="p-[16] pb-[85]">
       <View className="flex flex-row justify-between">
         <Text className="font-rubik-semibold text-xl">Profile</Text>
         <Image source={icons.bell} className="size-6" />
       </View>
-      <View className="items-center">
-        <View className="justify-center items-center my-6 w-[150] h-[150]">
-          {user && user?.avatar && typeof user?.avatar === "string" ? (
+      <View className="items-center overflow-visible">
+        <View className="justify-center items-center my-6 w-[150] h-[150] overflow-visible">
+          {user && user.avatar && typeof user.avatar ? (
             <Image
-              source={{ uri: user?.avatar }}
+              source={{ uri: user.avatar }}
               className="h-full w-full rounded-[75] object-cover"
               resizeMode="contain"
             />
@@ -78,7 +79,7 @@ const Profile = () => {
             <Image source={icons.edit} className="size-6" />
           </TouchableOpacity>
         </View>
-        <Text className="font-rubik-bold text-3xl">{user?.name}</Text>
+        <Text className="font-rubik-bold text-3xl capitalize flex-1 text-center">{user?.name}</Text>
       </View>
       <Divider />
       <SettingsItem icon={icons.calendar} title="My Booking" />
@@ -91,7 +92,7 @@ const Profile = () => {
       <SettingsItem icon={icons.info} title="Help Center" />
       <SettingsItem icon={icons.people} title="Invite Friends" />
       <Divider />
-      <SettingsItem icon={icons.logout} title="Logout" showRightIcon={false} />
+      <SettingsItem icon={icons.logout} title="Logout" showRightIcon={false} onPress={handleLogout}/>
     </ScrollView>
   );
 };

@@ -28,11 +28,11 @@ const SignIn = () => {
     }
   };
   return (
-    <ScrollView contentContainerClassName="h-full bg-white">
+    <ScrollView contentContainerClassName="bg-white flex-1 flex-grow" className="">
       <Image
         source={images.onboarding}
-        className="w-full h-4/6"
-        resizeMode="contain"
+        className="w-full h-4/6 object-center"
+        resizeMode="cover"
       />
       <View className="px-10">
         <Text className="text-base text-center uppercase font-rubik text-black-200">
@@ -45,6 +45,9 @@ const SignIn = () => {
         <Text className="text-base text-center capitalize font-rubik text-black-200 mt-12">
           Login to YourState with Google
         </Text>
+        <View>
+
+        </View>
         <TouchableOpacity
           className="bg-white shadow-md shadow-zinc-500 rounded-full w-full py-4 mt-5"
           onPress={handleLogin}

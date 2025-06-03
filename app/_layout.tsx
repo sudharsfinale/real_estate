@@ -21,9 +21,9 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
   return (
     <GlobalProvider>
-    <SafeAreaView style={{flex:1}} className="h-full bg-white">
-      <Stack screenOptions={{ headerShown: false }} />
-    </SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }} className="bg-white">
+        <Stack screenOptions={{ headerShown: false }} />
+      </SafeAreaView>
     </GlobalProvider>
   );
 }
